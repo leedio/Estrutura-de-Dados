@@ -1,6 +1,6 @@
 package br.ucsal.ed;
 
-import java.util.Scanner;
+//import java.util.Scanner;
 
 public class String implements IString{
 	
@@ -9,11 +9,11 @@ public class String implements IString{
 	public String(char a) {
 		
 	}
-	public String() {
-		Scanner input = new Scanner(System.in);
-		System.out.println("Entre com um texto: ");
-		valores = input.nextLine().toCharArray();
-		input.close();
+	public String(char[] a) {
+//		Scanner input = new Scanner(System.in);
+//		System.out.println("Entre com um texto: ");
+		valores = a;
+//		input.close();
 	}
 
 	@Override
@@ -21,12 +21,17 @@ public class String implements IString{
 		
 		int tamanhoVetor = valores.length;
 		
+		System.out.println("tamanho vetor = " +tamanhoVetor);
+		
 		return tamanhoVetor;
 	}
 
 	@Override
 	public char charAt(int posicao) {
 		char caractere = valores[posicao];
+		
+		System.out.println("caractere = " +caractere);
+		
 		return caractere;
 	}
 
@@ -43,6 +48,8 @@ public class String implements IString{
 			}
 		}
 	
+		System.out.println("equals = " +equals);
+		
 		return equals;
 	}
 
@@ -56,6 +63,9 @@ public class String implements IString{
 				starts = false;
 			}
 		}
+		
+		System.out.println("starts = " +starts);
+		
 		return starts;
 	}
 
@@ -69,6 +79,9 @@ public class String implements IString{
 				end = false;
 			}
 		}
+		
+		System.out.println("end = " +end);
+		
 		return false;
 	}
 
@@ -77,9 +90,11 @@ public class String implements IString{
 		
 		for(int cont = 0; cont<valores.length; cont++) {
 			if(valores[cont] == letra) {
+				System.out.println("index = " +cont);
 				return cont;
 			}
 		}
+		
 		return -1;
 	}
 
@@ -92,6 +107,7 @@ public class String implements IString{
 				posicao = cont;
 			}
 		}
+		System.out.println("lastIndex = " +posicao);
 		return posicao;
 	}
 
@@ -102,12 +118,13 @@ public class String implements IString{
 		for(int cont = inicio,i=0; cont<=valores.length; cont++,i++) {
 			a.valores[i] = valores[cont];
 		}
+		System.out.println("subs = " +a);
 		return a;
 	}
 
 	@Override
 	public String replace(char letraASertrocada, char letraATrocar) {
-		String repl = new String();
+		String repl = new String('a');
 		repl.valores = new char[valores.length];
 		for(int cont = 0; cont<valores.length; cont++) {
 			if(valores[cont] == letraASertrocada) {
@@ -117,6 +134,7 @@ public class String implements IString{
 		for(int cont=0; cont<repl.valores.length; cont++) {
 			repl.valores[cont] = valores[cont];
 		}
+		System.out.println("replace = " +repl);
 		return repl;
 	}
 
