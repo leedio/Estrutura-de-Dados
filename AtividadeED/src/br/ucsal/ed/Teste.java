@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Teste {
 
-	public static void main(String[] args) {
+	public static void main(java.lang.String[] args) {
 		Scanner input = new Scanner(System.in);
 		char[] carac;
 		char[] carac2;
@@ -18,7 +18,10 @@ public class Teste {
 		String a = new String(carac);
 		String b = new String(carac2);
 		
-		a.equals(b);
+		
+		a.concat(b);
+		
+		
 		
 		
 		input.close();

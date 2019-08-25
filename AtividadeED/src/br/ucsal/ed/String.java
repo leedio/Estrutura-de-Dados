@@ -1,5 +1,7 @@
 package br.ucsal.ed;
 
+import java.util.Arrays;
+
 //import java.util.Scanner;
 
 public class String implements IString{
@@ -144,8 +146,11 @@ public class String implements IString{
 		
 		a.valores = new char[valores.length + valor.valores.length];
 		
-	
-		return null;
+		for(int cont = valores.length+1, cont2=0; cont<=valor.valores.length; cont++, cont2++) {
+			a.valores[cont] = valor.valores[cont2];
+		}
+		System.out.println(a);
+		return a;
 	}
 
 	@Override
@@ -155,5 +160,10 @@ public class String implements IString{
 		}
 		
 	}
+	@Override
+	public java.lang.String toString() {
+		return "String [valores=" + Arrays.toString(valores) + "]";
+	}
+	
 
 }
