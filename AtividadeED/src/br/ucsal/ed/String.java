@@ -1,39 +1,29 @@
 package br.ucsal.ed;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
-//import java.util.Scanner;
 
 public class String implements IString{
-	
+	Scanner input = new Scanner(System.in);
 	char[]valores;
 	
 	public String(char a) {
 		
 	}
-	public String(char[] a) {
-//		Scanner input = new Scanner(System.in);
-//		System.out.println("Entre com um texto: ");
-		valores = a;
-//		input.close();
+	public String() {
+		valores = input.nextLine().toCharArray();
 	}
 
 	@Override
 	public int length() {
-		
 		int tamanhoVetor = valores.length;
-		
-		System.out.println("tamanho vetor = " +tamanhoVetor);
-		
 		return tamanhoVetor;
 	}
 
 	@Override
 	public char charAt(int posicao) {
 		char caractere = valores[posicao];
-		
-		System.out.println("caractere = " +caractere);
-		
 		return caractere;
 	}
 
@@ -49,9 +39,6 @@ public class String implements IString{
 				}
 			}
 		}
-	
-		System.out.println("equals = " +equals);
-		
 		return equals;
 	}
 
@@ -62,29 +49,28 @@ public class String implements IString{
 			if(valores[cont] == valor.valores[cont]) {
 				starts = true;
 			}else {
-				starts = false;
+				return false;
 			}
 		}
-		
-		System.out.println("starts = " +starts);
-		
 		return starts;
 	}
 
 	@Override
 	public boolean endWith(String valor) {
 		boolean end = false;
-		for(int cont=0; cont<valor.valores.length;cont++) {
-			if(valores[cont] == valor.valores[cont]) {
+		int cont = valor.valores.length, cont2=valores.length-1, cont3=valor.valores.length-1;
+		
+		while(cont>0) {
+			if(valores[cont2]==valor.valores[cont3]) {
 				end = true;
 			}else {
-				end = false;
+				return false;
 			}
+			cont--;
+			cont2--;
+			cont3--;
 		}
-		
-		System.out.println("end = " +end);
-		
-		return false;
+		return end;
 	}
 
 	@Override
@@ -92,7 +78,6 @@ public class String implements IString{
 		
 		for(int cont = 0; cont<valores.length; cont++) {
 			if(valores[cont] == letra) {
-				System.out.println("index = " +cont);
 				return cont;
 			}
 		}
@@ -109,7 +94,6 @@ public class String implements IString{
 				posicao = cont;
 			}
 		}
-		System.out.println("lastIndex = " +posicao);
 		return posicao;
 	}
 
@@ -117,10 +101,9 @@ public class String implements IString{
 	public String substring(int inicio, int quantCaracters) {
 		String a = new String('a');
 		a.valores = new char[quantCaracters];
-		for(int cont = inicio,i=0; cont<=valores.length; cont++,i++) {
+		for(int cont = inicio,i=0; cont<valores.length; cont++,i++) {
 			a.valores[i] = valores[cont];
 		}
-		System.out.println("subs = " +a);
 		return a;
 	}
 
@@ -136,7 +119,6 @@ public class String implements IString{
 		for(int cont=0; cont<repl.valores.length; cont++) {
 			repl.valores[cont] = valores[cont];
 		}
-		System.out.println("replace = " +repl);
 		return repl;
 	}
 
@@ -144,12 +126,14 @@ public class String implements IString{
 	public String concat(String valor) {
 		String a = new String('a');
 		
-		a.valores = new char[valores.length + valor.valores.length];
+		a.valores = new char[valores.length+valor.valores.length];
 		
-		for(int cont = valores.length+1, cont2=0; cont<=valor.valores.length; cont++, cont2++) {
+		for(int cont=0; cont<valores.length; cont++) {
+			a.valores[cont] = valores[cont];
+		}
+		for(int cont = valores.length, cont2=0;cont<a.valores.length; cont++, cont2++) {
 			a.valores[cont] = valor.valores[cont2];
 		}
-		System.out.println(a);
 		return a;
 	}
 
@@ -158,12 +142,5 @@ public class String implements IString{
 		for(int cont=0; cont<valores.length; cont++) {
 			System.out.print(valores[cont]);
 		}
-		
 	}
-	@Override
-	public java.lang.String toString() {
-		return "String [valores=" + Arrays.toString(valores) + "]";
-	}
-	
-
 }
